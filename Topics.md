@@ -1,0 +1,10 @@
+- Difference between @material-ui/core/styles and @material-ui/styles packages
+  - No need to install @material-ui/styles if core is already installed
+- Hook, ~~Styled component, HoC~~
+- Nesting Selectors
+- Adapting based on props
+- Overriding Styles - classes prop
+- Can't rely on the generated class names -> they keep changing
+- Can use the class names of Mui Components as they are always constant except in some specific cases
+- Global Styling
+- Theming 
