@@ -1,9 +1,23 @@
 import { useTheme } from '@material-ui/core';
 import React from 'react';
-import ReactJson from 'react-json-view';
+
+var canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
+function BrowserOnly({ children, fallback }) {
+  if (!canUseDOM || children == null) {
+    return fallback || null;
+  }
+
+  return <>{children()}</>;
+}
 
 const DefaultThemeDemo = () => {
   const theme = useTheme();
+
   return (
     <div
       style={{
@@ -16,7 +30,14 @@ const DefaultThemeDemo = () => {
         margin: '0 auto',
       }}
     >
-      <ReactJson name="Default Theme" src={theme} theme="tomorrow" />
+      <BrowserOnly>
+        {() => {
+          const ReactJson = require('react-json-view').default;
+          return (
+            <ReactJson name="Default Theme" src={theme} theme="tomorrow" />
+          );
+        }}
+      </BrowserOnly>
     </div>
   );
 };
